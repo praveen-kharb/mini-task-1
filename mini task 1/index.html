@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <!-- font awesome -->
+        <script src="https://kit.fontawesome.com/1f280ffe0a.js" crossorigin="anonymous"></script>
+
+
+        <!-- <link href="style.css" rel="stylesheet"> -->
+        <link href="theme.css" rel="stylesheet">
+
+
+        <style>
+            .row {
+                display: flex;
+                flex-wrap: wrap;
+                /* margin-right: -15px;
+                margin-left: -15px; */
+            }
+        </style>
+
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <div class="container-fluid p-0">
+            <div class="inner-container">
+                <div class="lefttab p-3">
+                    <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+                                aria-controls="nav-home" aria-selected="true">All products</a>
+                            <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+                                aria-controls="nav-profile" aria-selected="false">Most popular</a>
+                        </div>
+                    </nav>
+                    <div class="search-engine py-3">
+
+                        <!--  -->
+                        <div class="row" style="width: 100%;">
+                            <div class="col-md-12">
+
+                                <div class="card w-100">
+                                    <div class="card-body w-100">
+                                        <form action="https://probooking.io/admin/bookings.php" method="post"
+                                            onsubmit="showLoad()">
+
+                                            <div class="row w-100">
+
+                                                <div class="col-md-2 pr-0 w-100">
+                                                    <label class="col-md-12">Name/Email</label>
+                                                    <!-- <label class="col-md-12"></label> -->
+                                                    
+                                                    <input type="text" placeholder="Search" style="width: 100px;">
+                                                </div>
+                                                <div class="col-md-3 pr-0 w-100">
+                                                    <div class="form-group">
+                                                        <label class="col-md-12">Upcoming Schedule</label>
+                                                        <select name="period" id="type" class="form-control"
+                                                            onchange="happy()">
+                                                            <option value="7days">Next 7 days</option>
+                                                            <option value="30days">Next 30 days</option>
+                                                            <option value="custom">Custom</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 pr-0 w-100" id="custom_date">
+                                                    <!-- <div class="row">
+                                                        <div class="col-md-6 pr-0">
+                                                            <div class="form-group">
+                                                                <label class="col-md-12">From</label>
+                                                                <input type="date" class="form-control" name="from"
+                                                                    value="2021-06-17">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 pr-0">
+                                                            <div class="form-group">
+                                                                <label class="col-md-12">to</label>
+                                                                <input type="date" class="form-control" name="to"
+                                                                    value="2021-06-17">
+                                                            </div>
+                                                        </div>
+                                                    </div> -->
+                                                </div>
+                                                <div class="col-md-3 pr-0 pl-4 w-100">
+                                                    <div class="form-group">
+                                                        <label class="col-md-12">Status</label>
+                                                        <select name="status" class="form-control">
+                                                            <option value="booked" selected="">Booked</option>
+                                                            <option value="cancelled">Cancelled</option>
+                                                            <option value="rescheduled">Rescheduled</option>
+                                                            <option value="all">All</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1 pl-3 w-100" style="margin-top: 35px;">
+                                                    <i class="fas fa-search mr-1" style="font-size: 18px;"></i>
+                                                </div> 
+                                                <div class="col-md-1 pl-0 w-100">
+                                                    <div class="form-group">
+                                                        <div class="col-md-12" style="margin-top: 30px;">
+                                                            <button class="btn btn-light" style="width: 90px;">
+                                                                <i class="fas fa-cloud-download-alt mr-1"
+                                                                    style="font-size: 18px; color: black;">
+                                                                </i>
+                                                                Export
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--  -->
+                    </div>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                            aria-labelledby="nav-home-tab">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">First</th>
+                                        <th scope="col">Last</th>
+                                        <th scope="col">Handle</th>
+                                        <th scope="col">Handle</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row" style="font-size: 18px; font-weight: 400;">9:30am-10:00am
+                                            <br><span style="font-size: 16px; font-weight: 400;">17 june 2021</span>
+                                        </th>
+                                        <td style="font-size: 18px; font-weight: 500;">
+                                            <span class="light-text"
+                                                style="font-size: 19px; font-weight: 400;margin-top:30px;line-spacing:1.5;">2/2
+                                                Seats <bR> filled</span>
+                                        </td>
+                                        <td style="font-size: 18px; font-weight: 500;">30 Minute Meeting
+                                            <br><span class="light-text" style="font-size: 17px; font-weight: 400;">10$,
+                                                Paypal</span>
+                                        </td>
+                                        <td class="pt-4"><span class="colorgreen">Rescheduled</span></td>
+                                        <td style="font-size: 18px; font-weight: 400;" class="light-text pt-4">Details
+                                            <i class="fas fa-share pl-2 text-dark"></i>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" style="font-size: 18px; font-weight: 400;">9:30am-10:00am
+                                            <br><span style="font-size: 16px; font-weight: 400;">17 june 2021</span>
+                                        </th>
+                                        <td style="font-size: 18px; font-weight: 500;">Udit Arora
+                                            <br><span class="light-text"
+                                                style="font-size: 17px; font-weight: 400;">uarora1997@gmail.com</span>
+                                        </td>
+                                        <td style="font-size: 18px; font-weight: 500;">30 Minute Meeting
+                                            <br><span class="light-text" style="font-size: 17px; font-weight: 400;">10$,
+                                                Paypal</span>
+                                        </td>
+                                        <td class="pt-4"><span class="colorgreen">Rescheduled</span></td>
+                                        <td style="font-size: 18px; font-weight: 400;" class="light-text pt-4">Details
+                                            <i class="fas fa-share pl-2 text-dark"></i>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" style="font-size: 18px; font-weight: 400;">9:30am-10:00am
+                                            <br><span style="font-size: 16px; font-weight: 400;">17 june 2021</span>
+                                        </th>
+                                        <td style="font-size: 18px; font-weight: 500;">Udit Arora
+                                            <br><span class="light-text"
+                                                style="font-size: 17px; font-weight: 400;">uarora1997@gmail.com</span>
+                                        </td>
+                                        <td style="font-size: 18px; font-weight: 500;">30 Minute Meeting
+                                            <br><span class="light-text" style="font-size: 17px; font-weight: 400;">10$,
+                                                Paypal</span>
+                                        </td>
+                                        <td class="pt-4"><span class="colorgreen">Rescheduled</span></td>
+                                        <td style="font-size: 18px; font-weight: 400;" class="light-text pt-4">Details
+                                            <i class="fas fa-share pl-2 text-dark"></i>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" style="font-size: 18px; font-weight: 400;">9:30am-10:00am
+                                            <br><span style="font-size: 16px; font-weight: 400;">17 june 2021</span>
+                                        </th>
+                                        <td style="font-size: 18px; font-weight: 500;">Udit Arora
+                                            <br><span class="light-text"
+                                                style="font-size: 17px; font-weight: 400;">uarora1997@gmail.com</span>
+                                        </td>
+                                        <td style="font-size: 18px; font-weight: 500;">30 Minute Meeting
+                                            <br><span class="light-text" style="font-size: 17px; font-weight: 400;">10$,
+                                                Paypal</span>
+                                        </td>
+                                        <td class="pt-4"><span class="colorgreen">Rescheduled</span></td>
+                                        <td style="font-size: 18px; font-weight: 400;" class="light-text pt-4">Details
+                                            <i class="fas fa-share pl-2 text-dark"></i>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" style="font-size: 18px; font-weight: 400;">9:30am-10:00am
+                                            <br><span style="font-size: 16px; font-weight: 400;">17 june 2021</span>
+                                        </th>
+                                        <td style="font-size: 18px; font-weight: 500;">Udit Arora
+                                            <br><span class="light-text"
+                                                style="font-size: 17px; font-weight: 400;">uarora1997@gmail.com</span>
+                                        </td>
+                                        <td style="font-size: 18px; font-weight: 500;">30 Minute Meeting
+                                            <br><span class="light-text" style="font-size: 17px; font-weight: 400;">10$,
+                                                Paypal</span>
+                                        </td>
+                                        <td class="pt-4"><span class="colorgreen">Rescheduled</span></td>
+                                        <td style="font-size: 18px; font-weight: 400;" class="light-text pt-4">Details
+                                            <i class="fas fa-share pl-2 text-dark"></i>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Name</th>
+                                        <th scope="col" class="text-center">Email</th>
+                                        <th scope="col" class="text-right"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="font-size: 18px; font-weight: 400;">Udit</td>
+                                        <td style="font-size: 18px; font-weight: 400;" class="text-center">
+                                            Uditarora.ubs@gmail.com</td>
+                                        <td style="font-size: 18px; font-weight: 400;" class="text-right light-text">
+                                            View Details <i class="fas fa-share pl-2 text-dark"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-size: 18px; font-weight: 400;">Udit</td>
+                                        <td style="font-size: 18px; font-weight: 400;" class="text-center">
+                                            Uditarora.ubs@gmail.com</td>
+                                        <td style="font-size: 18px; font-weight: 400;" class="text-right light-text">
+                                            View Details <i class="fas fa-share pl-2 text-dark"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-size: 18px; font-weight: 400;">Udit</td>
+                                        <td style="font-size: 18px; font-weight: 400;" class="text-center">
+                                            Uditarora.ubs@gmail.com</td>
+                                        <td style="font-size: 18px; font-weight: 400;" class="text-right light-text">
+                                            View Details <i class="fas fa-share pl-2 text-dark"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-size: 18px; font-weight: 400;">Udit</td>
+                                        <td style="font-size: 18px; font-weight: 400;" class="text-center">
+                                            Uditarora.ubs@gmail.com</td>
+                                        <td style="font-size: 18px; font-weight: 400;" class="text-right light-text">
+                                            View Details <i class="fas fa-share pl-2 text-dark"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-size: 18px; font-weight: 400;">Udit</td>
+                                        <td style="font-size: 18px; font-weight: 400;" class="text-center">
+                                            Uditarora.ubs@gmail.com</td>
+                                        <td style="font-size: 18px; font-weight: 400;" class="text-right light-text">
+                                            View Details <i class="fas fa-share pl-2 text-dark"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-size: 18px; font-weight: 400;">Udit</td>
+                                        <td style="font-size: 18px; font-weight: 400;" class="text-center">
+                                            Uditarora.ubs@gmail.com</td>
+                                        <td style="font-size: 18px; font-weight: 400;" class="text-right light-text">
+                                            View Details <i class="fas fa-share pl-2 text-dark"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-size: 18px; font-weight: 400;">Udit</td>
+                                        <td style="font-size: 18px; font-weight: 400;" class="text-center">
+                                            Uditarora.ubs@gmail.com</td>
+                                        <td style="font-size: 18px; font-weight: 400;" class="text-right light-text">
+                                            View Details <i class="fas fa-share pl-2 text-dark"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-size: 18px; font-weight: 400;">Udit</td>
+                                        <td style="font-size: 18px; font-weight: 400;" class="text-center">
+                                            Uditarora.ubs@gmail.com</td>
+                                        <td style="font-size: 18px; font-weight: 400;" class="text-right light-text">
+                                            View Details <i class="fas fa-share pl-2 text-dark"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-size: 18px; font-weight: 400;">Udit</td>
+                                        <td style="font-size: 18px; font-weight: 400;" class="text-center">
+                                            Uditarora.ubs@gmail.com</td>
+                                        <td style="font-size: 18px; font-weight: 400;" class="text-right light-text">
+                                            View Details <i class="fas fa-share pl-2 text-dark"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-size: 18px; font-weight: 400;">Udit</td>
+                                        <td style="font-size: 18px; font-weight: 400;" class="text-center">
+                                            Uditarora.ubs@gmail.com</td>
+                                        <td style="font-size: 18px; font-weight: 400;" class="text-right light-text">
+                                            View Details <i class="fas fa-share pl-2 text-dark"></i></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function happy() {
+                let type = document.getElementById("type").value;
+                console.log(type);
+                let types = document.getElementById("custom_date");
+                if (type === "custom") {
+                    console.log(type);
+                    types.innerHTML = `
+                    <div class="row">
+                        <div class="col-md-6 pr-0">
+                            <div class="form-group">
+                                <label class="col-md-12">From</label>
+                                <input type="date" class="form-control" name="from" value="2021-06-17"></input>
+                            </div>
+                        </div>
+                        <div class="col-md-6 pr-0">
+                            <div class="form-group">
+                                <label class="col-md-12">to</label>
+                                <input type="date" class="form-control" name="to" value="2021-06-17"></input>
+                            </div>
+                        </div>
+                    </div>`;
+                } else {
+                    types.innerHTML = ``;
+                }
+
+            }
+        </script>
+    </body>
+
+</html>

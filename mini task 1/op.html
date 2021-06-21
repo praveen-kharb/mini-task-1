@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="jquery.powertip.min.css">
+        <link href="bootstrap.min.css" rel="stylesheet">
+
+        <link href="style.css" rel="stylesheet">
+        <link href="theme.css" rel="stylesheet">
+
+        <link rel="stylesheet" href="LineIcons.2.0.css">
+        <link rel="stylesheet" href="jquery.powertip.min.css">
+
+        <link rel="stylesheet" href="bootstrap-select.min.css">
+
+        <style>
+            .row {
+                display: flex;
+                flex-wrap: wrap;
+                margin-right: -15px;
+                margin-left: -15px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="https://probooking.io/admin/bookings.php" method="post" onsubmit="showLoad()">
+                            <div class="row">
+                                <div class="col-md-2 pr-0">
+                                    <label class="col-md-12">Name/Email</label>
+                                    <input type="text" name="query" value="" class="form-control">
+                                </div>
+                                <div class="col-md-2 pr-0">
+                                    <div class="form-group">
+                                        <label class="col-md-12">Upcoming Schedule</label>
+                                        <select name="period" id="type" class="form-control" onchange="happy()">
+                                            <option value="7days">Next 7 days</option>
+                                            <option value="30days">Next 30 days</option>
+                                            <option value="month">This Month</option>
+                                            <option value="year">This Year</option>
+                                            <option value="all">All</option>
+                                            <option value="custom">Custom</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 hide" id="custom_date">
+                                    <div class="row">
+                                        <div class="col-md-6 pr-0">
+                                            <div class="form-group">
+                                                <label class="col-md-12">From</label>
+                                                <input type="date" class="form-control" name="from" value="2021-06-17">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 pr-0">
+                                            <div class="form-group">
+                                                <label class="col-md-12">to</label>
+                                                <input type="date" class="form-control" name="to" value="2021-06-17">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label class="col-md-12">Status</label>
+                                        <select name="status" class="form-control">
+                                            <option value="booked" selected="">Booked</option>
+                                            <option value="cancelled">Cancelled</option>
+                                            <option value="rescheduled">Rescheduled</option>
+                                            <option value="all">All</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 pr-0">
+                                    <div class="form-group">
+                                        <label class="col-md-12">&nbsp;</label>
+                                        <button type="submit" name="reports" class="btn btn-primary btn-round"><i
+                                                class="lni lni-search-alt"></i></button>
+                                        <button type="button" class="btn btn-primary btn-round ml-2"><i
+                                                class="lni lni-download"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            function happy() {
+                var type = document.getElementById("type").value;
+                console.log(type)
+                var types = document.getElementById("custom_date");
+                if (type == "custom") {
+                    types.classList.remove("hide");
+                }
+                else { types.classList.add("hide"); }
+            }
+        </script>
+
+    </body>
+
+</html>
