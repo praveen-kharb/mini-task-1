@@ -1,0 +1,4 @@
+1. Nav bar top styling change
+2. In upcoming Schedule when "Custom" is selected hide "From" and "End" field ( Code already written at end just fix the errors)
+3. All elements should be in same line
+
