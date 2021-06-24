@@ -68,3 +68,6 @@ input {
     background-color: #fff;
     border-color: #9294BB;
 }
+.col-md-2{
+    flex : 0 0 11%;
+}
